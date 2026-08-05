@@ -1,0 +1,87 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#8e2630"><title>沈阳家庭游助手</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="style.css">
+</head>
+<body><main>
+<header class="hero"><div class="eyebrow">2026.08.08 — 08.11 / 08.12</div><h1>在盛京，慢慢玩</h1><p>田德智一家人的沈阳旅行助手 · 四人出发，三人慢游</p><div class="hero-grid"><div><b>🚄 12:24</b><span>8/8 抵达</span></div><div><b>🎤 19:00</b><span>齐豫演唱会</span></div><div><b>🏨 2 家</b><span>金廊 → 北站</span></div></div></header>
+<section class="weather-strip"><span>☔</span><div><b>出发前天气提示</b><small>目前预报 8/8 炎热、随后多雨。每天早晨再看实时天气；雨大优先室内馆。</small></div></section>
+<div id="content"></div>
+<nav class="bottom-nav">
+<button data-tab="trip" class="active"><span>🗓️</span>行程</button><button data-tab="booking"><span>🎫</span>预约</button><button data-tab="options"><span>✨</span>可选</button><button data-tab="reminders"><span>✅</span>提醒</button>
+</nav></main>
+<script>
+const S={
+"8/8":[
+["09:55–12:24","北京朝阳 → 沈阳北","09:10 前进站。到站后打车约 25–35 分钟去金廊智选假日酒店。","四人"],
+["13:15–14:10","午饭：老四季鸡汤面 + 鸡架","选酒店附近门店。鸡架可点拌鸡架，少辣一份照顾妈妈。","本地推荐"],
+["14:20–15:25","入住、午休、整理演唱会物品","演唱会日不安排重景点，把体力留到晚上。",""],
+["15:25–16:05","继续在酒店午休","默认不再出门，补足睡眠、喝水整理；16:05 前往茂业天地吃早晚餐。","默认方案"],
+["16:05–16:35","早晚餐：茂业天地内简餐","饺子/馄饨 + 粥或清淡米饭，别吃太撑；比专程找餐馆稳妥。",""],
+["16:45–17:30","前往三生制药体育馆","同晚奥体周边人流较大，最迟 16:45 出发，给取票、安检、找座留时间。",""],
+["19:00–约21:30","齐豫演唱会","结束后可步行离开场馆核心区再叫车。","固定安排"]],
+"8/9":[
+["08:00–08:45","酒店早餐 + 退房寄存","当天换酒店，行李先留前台；贵重物品随身。",""],
+["09:20–11:40","张学良旧居陈列馆","含大青楼、小青楼、赵一荻故居及金融博物馆。提前购票，现场慢走。","重点景点"],
+["11:50–12:40","中街富龙自助盒饭","本地朋友点名推荐；中街店参考地址：北顺城路 212 号。早点去菜品更齐。","东北盒饭"],
+["13:00–15:15","沈阳故宫","从大政殿一路向西慢逛；妈妈累时缩短到中轴线精华。成人票参考 ¥50。",""],
+["15:20–16:10","取行李 → 沈阳北站智选假日酒店","办理入住；梁中新整理返京行李。",""],
+["16:30–17:10","朋友送站前简餐","选北站附近清淡、出餐快的店。17:20 左右进站更安心。",""],
+["18:19","梁中新从沈阳北返京","田德智、刘华芹、田海慧继续行程。","三人模式"],
+["19:00–20:30","惠工夜市轻逛","离北站酒店近、相对本地；按体力决定。","看体力"]],
+"8/10":[
+["08:30–09:15","酒店早餐","若雨大，整体顺延半小时。",""],
+["09:45–12:15","辽宁省博物馆","免费，暑期通常持身份证入馆；只选 2–3 个重点展厅，别贪多。","室内避雨"],
+["12:30–13:30","午饭：奉天小馆/商场东北菜","锅包肉、地三鲜、酸菜白肉择二即可，三人小份避免浪费。",""],
+["14:20–16:20","“九·一八”历史博物馆","免费，周二至周日开放；建议在 16:00 前到核心展区。","庄重参观"],
+["17:10–18:10","回酒店休息","给妈妈留出完整休息时间。",""],
+["18:30–20:00","晚饭 + 北站周边散步","可吃本地烤肉；下雨就改室内。",""]]};
+const bookings=[
+["🏯","沈阳故宫","8/9 · 成人票参考 ¥50","https://www.sypm.org.cn/xinwen_1/618.html"],
+["🏛️","张学良旧居","8/9 · 成人票参考 ¥48","https://you.ctrip.com/sight/shenyang155/9227.html"],
+["🖼️","辽宁省博物馆","8/10 · 免费","https://www.ln.gov.cn/web/ywdt/jrln/wzxx2018/2026070607513186315/index.shtml"],
+["🕊️","“九·一八”历史博物馆","8/10 · 免费","https://www.museumschina.cn/museums/details?id=202208231952554250"],
+["🎤","齐豫演唱会","8/8 19:00 · 检查票夹/实名","https://search.damai.cn/search.html?keyword=%E9%BD%90%E8%B1%AB%20%E6%B2%88%E9%98%B3"]];
+const people=[["田德智","全程 · 行程联系人"],["梁中新","8/9 18:19 沈阳北返京"],["刘华芹","妈妈 · 注意休息与少走路"],["田海慧","妹妹 · 全程"]];
+const baseChecks=["核对四人身份证与车票","下载/更新 12306 与地图 App","确认演唱会电子票及实名人","带雨具、防晒、充电宝和薄外套","8/8 16:35 前吃完早晚餐","8/9 17:20 前送梁中新进站"];
+let st={tab:"trip",day:"8/8",ret:"aug11",bath:"none",walk:"rest",checked:[]};
+try{Object.assign(st,JSON.parse(localStorage.getItem("sy-plan-static")||"{}"))}catch(e){}
+function save(){localStorage.setItem("sy-plan-static",JSON.stringify(st))}
+function title(en,cn,x){return '<div class="section-head"><div><small>'+en+'</small><h2>'+cn+'</h2></div>'+(x?'<span class="soft-pill">'+x+'</span>':'')+'</div>'}
+function last(){
+ if(st.ret==="aug11")return [
+["08:30–10:10","北陵公园轻松散步","只走昭陵入口周边；下雨则睡到自然醒、酒店休息。",""],
+["10:20–11:15","午饭 + 回酒店取行李","11:35 前出发去沈阳北站。",""],
+["13:02–15:32","G136 沈阳北 → 北京朝阳","田德智到北京即可；刘华芹、田海慧转往北京南站。","推荐车次"],
+["15:40–17:20","北京朝阳 → 北京南站","建议打车；不要购买 18:40 以前的沧州车。",""],
+["18:40 后","北京南 → 沧州西","优先参考 18:40–19:31 或更晚班次，以 12306 实际售票为准。",""]];
+ let mid=st.bath==="qinghe"?["8/11 12:30–20:00","清河半岛温泉度假","沈北较远，建议至少留 6 小时。","度假型"]:st.bath==="tianbo"?["8/11 13:00–18:00","天泊圣汇洗浴休息","浑南市区型，时间更可控；晚饭可在馆内解决。","市区型"]:["8/11 13:00–17:00","中街自由活动 + 咖啡休息","补买伴手礼，也可临时加洗浴。",""];
+ return [["8/11 09:00–11:00","慢游北陵公园","退房后把行李寄存在北站酒店。",""],mid,["8/11 晚","续住沈阳北站附近","需另订 1 晚；尽量不换酒店。","需订房"],["8/12 08:40–11:10","G146 沈阳北 → 北京朝阳","备选 G128 08:45–11:15。","推荐早班"],["8/12 14:30 后","北京南 → 沧州西","跨站、午饭、安检至少留 3 小时。",""]];
+}
+function timeline(a){return '<div class="timeline">'+a.map(function(x){return '<article class="time-card"><div class="time">'+x[0]+'</div><div><div class="card-title">'+x[1]+(x[3]?'<span class="tag">'+x[3]+'</span>':'')+'</div><p>'+x[2]+'</p></div></article>'}).join('')+'</div>'}
+function trip(){
+ let ds=["8/8","8/9","8/10","8/11+"],labels=["演唱会","故宫旧居","博物馆","返程可调"];
+ let tabs='<div class="day-tabs">'+ds.map(function(d,i){return '<button data-day="'+d+'" class="'+(st.day===d?'active':'')+'"><b>'+d+'</b><span>'+labels[i]+'</span></button>'}).join('')+'</div>';
+ let a=st.day==="8/11+"?last():S[st.day].map(function(x,i){if(st.day==="8/8"&&i===3&&st.walk==="walk")return ["15:35–16:05","彩电塔外观—青年公园南侧短走","精神、天气合适时短走约 30–40 分钟，随时折返。","可选"];return x});
+ return '<section class="section">'+title("DAILY PLAN","每天怎么走","少折返 · 有午休")+tabs+(st.day==="8/11+"?'<div class="inline-choice"><b>当前：</b>'+(st.ret==="aug11"?"8/11 下午返京":"8/12 早班返京")+'<button data-go="options">调整</button></div>':'')+timeline(a)+'</section>';
+}
+function booking(){return '<section class="section">'+title("BOOKING","预约与票务","以官方平台为准")+'<div class="honesty"><b>库存说明</b><p>本页不会虚构“实时有票”。请点击卡片进入官方/购票页核对。</p></div><div class="booking-list">'+bookings.map(function(c){return '<article class="booking-card"><span class="booking-icon">'+c[0]+'</span><div><h3>'+c[1]+'</h3><p>'+c[2]+'</p><small>建议出发前再次核对</small></div><a href="'+c[3]+'" target="_blank">打开 ↗</a></article>'}).join('')+'</div><a class="primary-link" href="https://www.12306.cn/index/" target="_blank">打开 12306 核对返程余票 ↗</a></section>'}
+function opt(name,val,top,ttl,desc){return '<button class="option '+(st[name]===val?'active':'')+'" data-set="'+name+':'+val+'"><span>'+top+'</span><b>'+ttl+'</b><small>'+desc+'</small></button>'}
+function bath(val,ttl,desc){return '<button class="bath '+(st.bath===val?'active':'')+'" data-set="bath:'+val+'"><b>'+ttl+'</b><span>'+desc+'</span></button>'}
+function options(){return '<section class="section">'+title("FLEXIBLE PLAN","可选方案","选择自动保存")+'<h3 class="group-title">返程时间</h3><div class="option-grid">'+opt("ret","aug11","方案 A · 当前","8/11 下午返京","G136 13:02–15:32｜18:40 后转沧州")+opt("ret","aug12","方案 B · 松弛","8/12 一早返京","G146 08:40–11:10｜需续住一晚")+'</div><h3 class="group-title">8/8 下午安排</h3><div class="option-grid">'+opt("walk","rest","方案 A · 默认","酒店继续午休","吃完午饭后休息到 16:05，最省体力")+opt("walk","walk","方案 B · 可选","彩电塔—青年公园","精神和天气合适时短走 30–40 分钟")+'</div><h3 class="group-title">沈阳洗浴体验</h3><div class="bath-list">'+bath("none","暂不安排","保留自由时间，最省体力")+bath("tianbo","天泊圣汇 · 市区型","浑南，适合 8/11 下午 4–5 小时")+bath("qinghe","清河半岛 · 度假型","沈北较远，建议至少 6 小时")+'</div>'+(st.bath!=="none"&&st.ret==="aug11"?'<div class="warning">8/11 返京时间较紧，建议改为 8/12 早返。</div>':'')+'<div class="option-summary"><b>你的组合</b><p>'+(st.ret==="aug11"?"8/11 下午返京":"8/12 早返")+' · '+(st.bath==="none"?"不安排洗浴":st.bath==="tianbo"?"天泊圣汇":"清河半岛")+'</p><button data-day="8/11+">查看联动行程 →</button></div><h3 class="group-title">本地朋友的吃喝手记</h3><p class="muted">老四季、富龙盒饭、惠工夜市、烤肉和鸡架等原聊天截图。</p><div class="chat-gallery">'+[1,2,3,4].map(function(n){return '<img src="local-food-'+n+'.png" alt="餐饮推荐截图 '+n+'">'}).join('')+'</div></section>'}
+function reminders(){
+ let checks=baseChecks.concat(st.ret==="aug11"?"购买 8/11 G136 与 18:40 后沧州车票":"续订 8/11 一晚酒店并购买 8/12 早班车",st.bath!=="none"?"确认洗浴门票、过夜规则与老人优惠":"洗浴暂不预订，保留自由时间");
+ return '<section class="section">'+title("CHECKLIST","出发提醒",st.checked.filter(function(x){return checks.includes(x)}).length+"/"+checks.length)+'<div class="checklist">'+checks.map(function(x){return '<label class="'+(st.checked.includes(x)?'done':'')+'"><input type="checkbox" data-check="'+x.replace(/"/g,'&quot;')+'" '+(st.checked.includes(x)?'checked':'')+'><span>'+x+'</span></label>'}).join('')+'</div><div class="info-box"><b>🏨 酒店切换</b><p>8/8：沈阳金廊智选假日酒店<br>8/9 起：沈阳北站智选假日酒店<br>'+(st.ret==="aug12"?"8/11：需额外续订一晚（建议仍住北站附近）":"")+'</p></div><div class="people"><h3>同行人员</h3>'+people.map(function(p){return '<div><span>'+p[0].slice(-1)+'</span><p><b>'+p[0]+'</b><small>'+p[1]+'</small></p></div>'}).join('')+'</div><div class="install-tip"><b>📱 像小程序一样打开</b><p>iPhone：Safari“分享 → 添加到主屏幕”；安卓：浏览器菜单“添加到主屏幕”。选择与勾选保存在本机。</p></div></section>';
+}
+function render(){document.getElementById("content").innerHTML=st.tab==="trip"?trip():st.tab==="booking"?booking():st.tab==="options"?options():reminders();document.querySelectorAll(".bottom-nav button").forEach(function(b){b.classList.toggle("active",b.dataset.tab===st.tab)});bind()}
+function bind(){
+ document.querySelectorAll("[data-day]").forEach(function(b){b.onclick=function(){st.day=b.dataset.day;st.tab="trip";save();render()}});
+ document.querySelectorAll("[data-go]").forEach(function(b){b.onclick=function(){st.tab=b.dataset.go;render()}});
+ document.querySelectorAll("[data-set]").forEach(function(b){b.onclick=function(){let z=b.dataset.set.split(":");st[z[0]]=z[1];save();render()}});
+ document.querySelectorAll("[data-check]").forEach(function(b){b.onchange=function(){let x=b.dataset.check;st.checked=b.checked?st.checked.concat(x):st.checked.filter(function(y){return y!==x});save();render()}});
+}
+document.querySelectorAll(".bottom-nav button").forEach(function(b){b.onclick=function(){st.tab=b.dataset.tab;render()}});
+render();
+</script></body></html>
